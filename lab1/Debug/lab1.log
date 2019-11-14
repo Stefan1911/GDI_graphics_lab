@@ -1,0 +1,32 @@
+﻿  lab1View.cpp
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.h(67,21): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.h(70,132): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.h(70,86): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.h(80,32): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.h(81,32): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(124,18): warning C4244: 'initializing': conversion from 'long double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(162,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(163,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(165,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(166,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(192,26): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(193,26): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(217,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(219,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(222,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(224,22): warning C4244: 'initializing': conversion from 'long double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(273,30): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(274,30): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(276,30): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(277,30): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(279,27): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(280,27): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(282,27): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(283,27): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(311,22): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(312,22): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(313,43): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(314,43): warning C4244: '=': conversion from 'double' to 'LONG', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(407,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\lab1\lab1View.cpp(408,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  lab1.vcxproj -> D:\Work Space\Racunarska Grafika\Hello Grafika\Lab1_practice\lab1\Debug\lab1.exe
