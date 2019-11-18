@@ -155,6 +155,16 @@ public:
 	void DrawFromMetaFile(CDC* pDC, CString filePath);
 	void DrawFlower(CDC* pDC, CPoint center, int size);
 	double Distance(CPoint Point1, CPoint point2);
+
+	void DrawBitmap(CDC * pDC, int resurceId);
+	void Rotate(CDC* pDC, double ang, int direction);
+	void Translate(CDC* pDC, double x, double y, int direction);
+	void ResetXForm(CDC *pDC);
+
+
+	void DrawBase(CDC *pDC);
+	void DrawFirstArm(CDC* pDC);
+	void DrawSecondArm(CDC* pDC);
 };
 
 #ifndef _DEBUG  // debug version in lab1View.cpp

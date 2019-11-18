@@ -74,5 +74,20 @@
     <Image Include="res\Toolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\osnova.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ruka1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ruka2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ruka3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

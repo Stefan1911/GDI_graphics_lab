@@ -206,8 +206,13 @@
     <None Include="res\lab1.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\bitmap2.bmp" />
     <Image Include="res\lab1.ico" />
     <Image Include="res\lab1Doc.ico" />
+    <Image Include="res\osnova.bmp" />
+    <Image Include="res\ruka1.bmp" />
+    <Image Include="res\ruka2.bmp" />
+    <Image Include="res\ruka3.bmp" />
     <Image Include="res\Toolbar.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

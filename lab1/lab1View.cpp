@@ -16,7 +16,8 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
+#define RIGHT 3
+#define LEFT 2
 
 // Clab1View
 
@@ -38,19 +39,13 @@ Clab1View::Clab1View() noexcept
 	// TODO: add construction code here
 	this->numberOfaxlePoint = 5;
 	this->axlePoint = new SCPoint[numberOfaxlePoint];
-	int distances[3] = { 100,100,30 };
+	int distances[3] = { 250,190,30 };
 	for (int i = 0; i < numberOfaxlePoint-2; i++) {
-		axlePoint[i] = (i == 0)? SCPoint(200, 200, NULL, 0) : SCPoint(&axlePoint[i-1],0,distances[i-1]);
+		axlePoint[i] = (i == 0)? SCPoint(300, 400, NULL, 0) : SCPoint(&axlePoint[i-1],0,distances[i-1]);
 	}
 	axlePoint[3] = SCPoint(&axlePoint[numberOfaxlePoint - 3], 0, distances[numberOfaxlePoint - 3]);
 	axlePoint[4] = SCPoint(&axlePoint[numberOfaxlePoint - 3], 0, distances[numberOfaxlePoint - 3]);
-	
 
-	this->globalAngle = -90;
-	this->globalXOffset = 200;
-	this->globalYOffset = 700;
-	/*axlePoint[1] = SCPoint(200, 500, &axlePoint[0], 0);
-	axlePoint[2] = SCPoint(200, 800, &axlePoint[1], 0);*/
 }
 
 Clab1View::~Clab1View()
@@ -74,50 +69,78 @@ void Clab1View::OnDraw(CDC* pDC)
 
 	int prevMode = SetGraphicsMode(pDC->m_hDC, GM_ADVANCED);
 	DWORD dw = GetLastError();
-	XFORM xForm, oldXForm,globalXfomr;
+	XFORM oldXForm;
 	GetWorldTransform(pDC->m_hDC, &oldXForm);
 
-	globalXfomr.eM11 = (float)cos(globalAngle * toRad);
-	globalXfomr.eM12 = (float)sin(globalAngle * toRad);;
-	globalXfomr.eM21 = (float)-sin(globalAngle * toRad);;
-	globalXfomr.eM22 = (float)cos(globalAngle * toRad);;
-	globalXfomr.eDx = (float)globalXOffset;
-	globalXfomr.eDy = (float)globalYOffset;
-	SetWorldTransform(pDC->m_hDC, &globalXfomr);
+	DrawBase(pDC);
+	DrawFirstArm(pDC);
+	DrawSecondArm(pDC);
 
-
-	xForm.eM11 = (float)cos(90 *toRad);
-	xForm.eM12 = (float)sin(90 * toRad);;
-	xForm.eM21 = (float)-sin(90 * toRad);;
-	xForm.eM22 = (float)cos(90 * toRad);;
-	xForm.eDx = (float)350.0;
-	xForm.eDy = (float)50.0;
-	ModifyWorldTransform(pDC->m_hDC, &xForm,MWT_LEFTMULTIPLY);
-	this->DrawBottemRightShape(pDC, axlePoint[0].toCpoint() - CPoint(50, 0), 75, 100, RGB(30, 184, 212), RGB(30, 184, 212));
-	SetWorldTransform(pDC->m_hDC, &globalXfomr);
-
-	PolygonConfig armOneconf1(new CPen(PS_SOLID, 3, RGB(232, 35, 202)), new CBrush(BS_AUTO3STATE,RGB(232, 35, 202)), 4, 30, 0);
-	TrapezConfig armOneconf2(new CPen(PS_SOLID, 3, RGB(232, 35, 202)), new CBrush(BS_AUTO3STATE, RGB(30, 184, 212)), 30, 20);
-	PolygonConfig armOneconf3(new CPen(PS_SOLID, 3, RGB(232, 35, 202)), new CBrush(BS_AUTO3STATE, RGB(232, 35, 202)), 5, 20, 0);
-	this->DrawArm(pDC, axlePoint[0].toCpoint(), axlePoint[1].toCpoint(), armOneconf1, armOneconf2, armOneconf3);
-
-
-	PolygonConfig armTwoconf1(new CPen(PS_SOLID, 3, RGB(255, 0, 0)), new CBrush(BS_3STATE, RGB(0, 0, 255)), 6, 30, 0);
-	TrapezConfig armTwoconf2(new CPen(PS_SOLID, 3, RGB(255, 0, 0)), new CBrush(BS_AUTO3STATE, RGB(255, 0, 0)), 30, 20);
-	PolygonConfig armTwoconf3(new CPen(PS_SOLID, 3, RGB(255, 0, 0)), new CBrush(BS_3STATE, RGB(0, 0, 255)), 6, 20, 0);
-	this->DrawArm(pDC, axlePoint[1].toCpoint(), axlePoint[2].toCpoint(), armTwoconf1, armTwoconf2, armTwoconf3);
-
-	this->DrawFlower(pDC, CPoint(400, 400), 100);
-
-	ClawConfig clawConfig(new CPen(PS_SOLID, 3, RGB(255, 0, 0)), new CBrush(BS_AUTO3STATE, RGB(0, 255, 0)),10,10);
-	this->DrawClaw(pDC, axlePoint[2].toCpoint(), axlePoint[3].toCpoint(), axlePoint[4].toCpoint(), clawConfig);
-	
 
 	SetWorldTransform(pDC->m_hDC, &oldXForm);
 	SetGraphicsMode(pDC->m_hDC, prevMode);
 }
 
+void Clab1View::Rotate(CDC* pDC, double ang, int direction)
+{
+	XFORM lpXform;
+	lpXform.eDx = 0;
+	lpXform.eDy = 0;
+	lpXform.eM11 = cos(ang * toRad);
+	lpXform.eM12 = sin(ang * toRad);
+	lpXform.eM21 = -sin(ang * toRad);
+	lpXform.eM22 = cos(ang * toRad);
+	pDC->ModifyWorldTransform(&lpXform, direction);
+}
 
+void Clab1View::Translate(CDC* pDC, double x, double y, int direction)
+{
+	XFORM lpXform;
+	lpXform.eDx = x;
+	lpXform.eDy = y;
+	lpXform.eM11 = 1;
+	lpXform.eM12 = 0;
+	lpXform.eM21 = 0;
+	lpXform.eM22 = 1;
+	pDC->ModifyWorldTransform(&lpXform, direction);
+}
+
+void Clab1View::ResetXForm(CDC* pDC)
+{
+	pDC->ModifyWorldTransform(NULL, 1);
+}
+
+void Clab1View::DrawBase(CDC* pDC)
+{
+	CPoint point = axlePoint[0].toCpoint();
+	Translate(pDC,point.x, point.y+36, LEFT);
+	DrawBitmap(pDC, 310);
+	ResetXForm(pDC);
+}
+
+void Clab1View::DrawFirstArm(CDC* pDC)
+{
+	CPoint lowerAxle = axlePoint[0].toCpoint();
+	CPoint UpperAxle = axlePoint[1].toCpoint();
+	int x = lowerAxle.x + (UpperAxle.x - lowerAxle.x) / 2;
+	int y = UpperAxle.y + (lowerAxle.y - UpperAxle.y) / 2;
+	Translate(pDC, x, y, LEFT);
+	Rotate(pDC, 90 - axlePoint[1].angle, LEFT);
+	DrawBitmap(pDC, 312);
+	ResetXForm(pDC);
+}
+
+void Clab1View::DrawSecondArm(CDC* pDC)
+{
+	CPoint lowerAxle = axlePoint[1].toCpoint();
+	CPoint UpperAxle = axlePoint[2].toCpoint();
+	int x = lowerAxle.x + (UpperAxle.x - lowerAxle.x) / 2;
+	int y = UpperAxle.y + (lowerAxle.y - UpperAxle.y) / 2;
+	Translate(pDC, x, y, LEFT);
+	Rotate(pDC,90-axlePoint[2].angle, LEFT);
+	DrawBitmap(pDC, 313);
+	ResetXForm(pDC);
+}
 
 void Clab1View::DrawArm(CDC* pDC, CPoint bottomPoint, CPoint topPoint, PolygonConfig firstPolygonConfig, TrapezConfig trapezConfig, PolygonConfig secundPolygonConfig)
 {
@@ -420,6 +443,65 @@ void Clab1View::DrawFlower(CDC* pDC, CPoint center, int size)
 double Clab1View::Distance(CPoint Point1, CPoint point2)
 {
 	return sqrt(pow((point2.x-Point1.x),2) + pow((point2.y - Point1.y), 2));
+}
+
+void Clab1View::DrawBitmap(CDC *pDC ,int resurceId)
+{
+	//CBitmap bitmap;
+	//bitmap.LoadBitmapW(resurceId);
+	//BITMAP properties;
+	//bitmap.GetBitmap(&properties);
+	//CDC *newDC = new CDC();
+	//newDC->CreateCompatibleDC(pDC);
+	//newDC->SelectObject(bitmap);
+
+	//pDC->BitBlt(-(properties.bmWidth / 2), -(properties.bmHeight / 2), properties.bmWidth, properties.bmHeight, newDC, 0, 0, SRCCOPY);
+
+	//newDC->DeleteDC();
+	//delete newDC;
+	//bitmap.DeleteObject();
+
+	CBitmap imageMap;
+	imageMap.LoadBitmapW(resurceId);
+	BITMAP imageProp;
+	imageMap.GetBitmap(&imageProp);
+
+	CBitmap mask;
+	mask.CreateBitmap(imageProp.bmWidth, imageProp.bmHeight, 1, 1, NULL);
+
+	CDC* srcDC = new CDC();
+	srcDC->CreateCompatibleDC(NULL);
+	CDC* dstDC = new CDC();
+	dstDC->CreateCompatibleDC(NULL);
+
+	CBitmap *oldSrcBtm = srcDC->SelectObject(&imageMap);
+	CBitmap *oldDstBtm = dstDC->SelectObject(&mask);
+
+	srcDC->SetBkColor(srcDC->GetPixel(0, 0));
+
+	dstDC->BitBlt(0, 0, imageProp.bmWidth, imageProp.bmHeight, srcDC, 0, 0, SRCCOPY);
+	srcDC->SetTextColor(RGB(255, 255, 255));
+	srcDC->SetBkColor(RGB(0, 0, 0));
+	srcDC->BitBlt(0, 0, imageProp.bmWidth, imageProp.bmHeight, dstDC, 0, 0, SRCAND);
+
+
+	srcDC->SelectObject(oldSrcBtm);
+	dstDC->SelectObject(oldDstBtm);
+	srcDC->DeleteDC();
+	delete srcDC;
+	dstDC->DeleteDC();
+	delete dstDC;
+
+	CDC* MemDC = new CDC();
+	MemDC->CreateCompatibleDC(NULL);
+	MemDC->SelectObject(&mask);
+
+	pDC->BitBlt(-(imageProp.bmWidth / 2), -(imageProp.bmHeight / 2), imageProp.bmWidth, imageProp.bmHeight, MemDC, 0, 0, SRCAND);
+
+	MemDC->SelectObject(&imageMap);
+	pDC->BitBlt(-(imageProp.bmWidth / 2), -(imageProp.bmHeight / 2), imageProp.bmWidth, imageProp.bmHeight, MemDC, 0, 0, SRCPAINT);
+	MemDC->DeleteDC();
+	delete MemDC;
 }
 
 
